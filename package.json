@@ -1,0 +1,30 @@
+{
+  "name": "io-memcached",
+  "version": "0.1.0",
+  "description": "Memcached client for node.js , based on Promise, build-in Connection Pool.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RifeWang/io-memcached.git"
+  },
+  "keywords": [
+    "memcached",
+    "client",
+    "node.js",
+    "promise",
+    "pool"
+  ],
+  "author": "rifewang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RifeWang/io-memcached/issues"
+  },
+  "homepage": "https://github.com/RifeWang/io-memcached#readme",
+  "dependencies": {
+    "generic-pool": "^3.7.1",
+    "hashring": "^3.2.0"
+  }
+}

@@ -1,4 +1,5 @@
 const Memcached = require('../lib/memcached');
+const utils = require('../lib/utils');
 
 
 let testdata = 'testetsetsetsetsetsetstset\r\n\stesettetsettestst';
@@ -48,6 +49,31 @@ for (let i = 0; i < 2000; i++) {
         const dr = await memcached.decr(key, 1299999);
         console.log(':::: decr :::::', dr);
         await memcached.del(key);
+
+
+        const memcached2 = new Memcached(['127.0.0.1:11211', '127.0.0.2:11211'], {
+            clusterAlg: 'hash'
+        });
+        console.log(memcached2._getServerByKey('1'))
+        console.log(memcached2._getServerByKey('1'))
+        console.log(memcached2._getServerByKey('2'))
+        console.log(memcached2._getServerByKey('2'))
+        console.log(memcached2._getServerByKey('3'))
+        console.log(memcached2._getServerByKey('4'))
+
+        const servers = ['127.0.0.1:11211', '127.0.0.2:11211'];
+        const memcached3 = new Memcached(servers, {
+            clusterAlgFunc: function(key) {
+                const i = utils.hashMod(key, servers.length);
+                return servers[i];
+            }
+        });
+        console.log('==', memcached3._getServerByKey('1'))
+        console.log('==', memcached3._getServerByKey('1'))
+        console.log('==', memcached3._getServerByKey('2'))
+        console.log('==', memcached3._getServerByKey('2'))
+        console.log('==', memcached3._getServerByKey('3'))
+        console.log('==', memcached3._getServerByKey('4'))
     } catch (error) {
         console.log('error:', error);
     }

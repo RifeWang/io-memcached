@@ -1,4 +1,4 @@
-![npm (tag)](https://img.shields.io/npm/v/io-memcached/latest) ![NPM](https://img.shields.io/npm/l/io-memcached)
+![npm (tag)](https://img.shields.io/npm/v/io-memcached/latest) ![npm](https://img.shields.io/npm/dm/io-memcached) ![NPM](https://img.shields.io/npm/l/io-memcached) ![GitHub last commit](https://img.shields.io/github/last-commit/rifewang/io-memcached)
 # io-memcached
 Memcached client for node.js.
 -  Promise
@@ -70,6 +70,23 @@ const memcached = new Memcached(['192.168.0.1:11211', '192.168.0.2:11211'];
 ```
 
 #### options
+- `clusterAlg` : cluster algorithm.
+    - `c-hash` : (default). consistent hashing algorithm.
+    - `hash`   : hash mod algorithm.
+
+- `clusterAlgFunc` : custom cluster algorithm function. receive a key and return a server address, it will ignore the `clusterAlg` if `clusterAlgFunc` defined:
+```
+const servers = ['127.0.0.1:11211', '127.0.0.2:11211'];
+const memcached3 = new Memcached(servers, {
+    clusterAlgFunc: function(key) {
+        // do something , and return a server address.
+        // the result must be in server locations. if not , you will get 'cluster algorithm function error'.
+
+        return '127.0.0.1:11211';
+    }
+});
+```
+
 - `pool` :
     - `max` : maximum number of tcp connection for everyone server. (default=1)
     - `min` : minimum number of tcp connection to keep in pool at any given time. If this is set >= max, the pool will silently set the min to equal max. (default=0)

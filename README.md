@@ -1,6 +1,9 @@
 ![npm (tag)](https://img.shields.io/npm/v/io-memcached/latest) ![NPM](https://img.shields.io/npm/l/io-memcached)
 # io-memcached
-Memcached client for node.js, based on Promise, build-in Connection Pool, supporting clusters based on consistent hashing algorithm.
+Memcached client for node.js.
+-  Promise
+- build-in TCP Connection Pool
+- support memcached cluster, base on consistent hashing algorithm.
 
 io-memcached is used in my production and works well.
 
@@ -34,6 +37,15 @@ const memcached = new Memcached(['127.0.0.1:11211'], {
 
         const d = await memcached.del(key);
         console.log(':::: del :::::', d);
+
+        await memcached.set(key, 100);
+        const cr = await memcached.incr(key, 123);
+        console.log(':::: incr result :::::', cr);
+
+        const dr = await memcached.decr(key, 12);
+        console.log(':::: decr result :::::', dr);
+
+        await memcached.del(key);
     } catch (error) {
         console.log('error:', error);
     }
@@ -91,6 +103,15 @@ return a string:
 - `DELETED` : to indicate success.
 - `NOT_FOUND` : to indicate that the item with this key was not found.
 
+### Incr / Decr
+- `incr(key, value)`
+- `decr(key, value)`
+
+return:
+- `NOT_FOUND` (string) : the key not exist.
+- `value` (number) : value is the new value of the item's data. if a client tries
+to decrease the value below 0, the new value will be 0.
+
 ## Error
 You should catch errors in you code.
 
@@ -104,14 +125,14 @@ like : `timeout of 5000ms exceeded`
 
 ### key error
 - `KEY_TYPE_ERROR` : not a string.
-- `KEY_VALUE_ERROR` : key includes \s, \r or \n.
+- `KEY_VALUE_ERROR` : the key must not include control characters or whitespace.
 - `KEY_LENGTH_ERROR` : max 250 bytes in length.
 
 ### value error
 - `VALUE_LENGTH_ERROR` : max 1 MB. occurred in set method.
 
 ## TODO
-io-memcached only support three method at now, it is simple.
+io-memcached only support several methods at now.
 
 
 ## Lisense

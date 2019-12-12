@@ -40,6 +40,14 @@ for (let i = 0; i < 2000; i++) {
 
         const d = await memcached.del(key);
         console.log(':::: del :::::', d);
+
+        await memcached.set(key, 100);
+        const cr = await memcached.incr(key, 123);
+        console.log(':::: incr :::::', cr, typeof cr);
+
+        const dr = await memcached.decr(key, 1299999);
+        console.log(':::: decr :::::', dr);
+        await memcached.del(key);
     } catch (error) {
         console.log('error:', error);
     }

@@ -1,3 +1,4 @@
 .editorconfig
 .vscode/
 node_modules/
+.md/

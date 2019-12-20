@@ -10,6 +10,4 @@ install:
   - ./configure && make && sudo make install
   - memcached -d
 script:
-    - npm ci
-    - npm test
-    - npm report-coverage
+    - npm ci && npm test && npm run report-coverage

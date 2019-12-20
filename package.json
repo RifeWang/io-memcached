@@ -1,10 +1,11 @@
 {
   "name": "io-memcached",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Memcached client for node.js , based on Promise, build-in Connection Pool.",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "nyc ava",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,8 @@
     "hashring": "^3.2.0"
   },
   "devDependencies": {
-    "ava": "^2.4.0"
+    "ava": "^2.4.0",
+    "codecov": "^3.6.1",
+    "nyc": "^14.1.1"
   }
 }

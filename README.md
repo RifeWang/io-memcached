@@ -1,4 +1,4 @@
-![npm (tag)](https://img.shields.io/npm/v/io-memcached/latest) ![npm](https://img.shields.io/npm/dm/io-memcached) ![NPM](https://img.shields.io/npm/l/io-memcached) ![GitHub last commit](https://img.shields.io/github/last-commit/rifewang/io-memcached)
+![npm (tag)](https://img.shields.io/npm/v/io-memcached/latest) ![Travis (.com)](https://img.shields.io/travis/com/rifewang/io-memcached) ![Codecov](https://img.shields.io/codecov/c/github/rifewang/io-memcached) ![NPM](https://img.shields.io/npm/l/io-memcached) ![GitHub last commit](https://img.shields.io/github/last-commit/rifewang/io-memcached)
 # io-memcached
 Memcached client for node.js.
 -  Promise

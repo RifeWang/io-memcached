@@ -1,6 +1,6 @@
 {
   "name": "io-memcached",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Memcached client for node.js , based on Promise, build-in Connection Pool.",
   "main": "index.js",
   "scripts": {

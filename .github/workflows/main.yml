@@ -38,5 +38,3 @@ jobs:
         npm ci
         npm test
         npm run report-coverage
-      env:
-        CI: true
